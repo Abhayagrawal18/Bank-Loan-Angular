@@ -1,0 +1,37 @@
+<nav class="navbar-shell" aria-label="Main navigation">
+	<div class="container navbar-inner">
+		<a class="brand-lockup" href="/home" aria-label="Northline Bank home">
+			<span class="brand-mark" aria-hidden="true">N</span>
+			<span class="brand-name">northline<span>bank</span></span>
+		</a>
+
+		<div class="nav-links">
+			<a class="nav-link active" routerLink="/home" aria-current="page">Home</a>
+			<a class="nav-link" routerLink="register-customer">Register</a>
+			<a class="nav-link" href="/home#how-it-works">How it works</a>
+			@if(loggedUserData){
+                <a class="nav-link" routerLink="/application-list">Application</a>
+			}
+		</div>
+        
+		<div class="nav-actions">
+			@if(loggedUserData){
+			<div class="account-summary" role="group" aria-label="Signed in as Alex Morgan">
+				<span class="account-avatar" aria-hidden="true">AM</span>
+				<span class="account-details">
+					<span class="account-caption">Signed in as</span>
+					<strong class="account-name">{{loggedUserData?.userName}}</strong>
+				</span>
+			</div>
+		}
+			@if(loggedUserData){
+               <button class="login-link logout-button" (click) = "onLogOff()" type="button">Log off</button>
+			}
+			@else{
+				<a class="btn nav-apply" routerLink="/login">Login <span aria-hidden="true">&#8599;</span></a>
+			}
+			
+			<a class="btn nav-apply" routerLink="/new-application">Start an application <span aria-hidden="true">&#8599;</span></a>
+		</div>
+	</div>
+</nav>

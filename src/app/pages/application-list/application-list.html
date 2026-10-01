@@ -1,0 +1,68 @@
+<div class="applications-page">
+  <div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title">Recent applications</h1>
+
+    <div class="status-filter">
+      <button class="filter-pill active">All</button>
+      <button class="filter-pill">Approved</button>
+      <button class="filter-pill">Pending</button>
+      <button class="filter-pill">Rejected</button>
+    </div>
+  </div>
+
+  <div class="applications-grid">
+    @for(item of applicationList(); track $index){
+        <div class="application-card approved">
+          @if(loggedUser.role != 'Customer'){
+               <div class="card-top">
+        <div class="user-badge">{{item.fullName| slice:0:1}}</div>
+        <div class="user-info">
+          <h2>{{item.fullName}}</h2>
+        </div>
+        <span class="status-badge approved">{{item.applicationStatus}}</span>
+      </div>
+        }
+ 
+      <div class="card-body-grid">
+        <div class="info-block">
+          <label>Applied Date</label>
+          <strong>{{item.dateApplied | date: 'dd-MM-yy'}}</strong>
+        </div>
+        @if(loggedUser.role != 'Customer'){
+           <div class="info-block">
+          <label>Email</label>
+          <strong>{{item.email}}</strong>
+          </div>
+        }
+        
+        <div class="info-block">
+          <label>Phone</label>
+          <strong>7894561230</strong>
+        </div>
+        <div class="info-block">
+          <label>Assigned</label>
+          <strong>{{item.assignedToBankEmployee}}</strong>
+        </div>
+        <div class="info-block">
+          <label>PAN</label>
+          <strong>{{item.panCard}}</strong>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-status-text">
+          <span class="dot green"></span>
+          {{item.applicationStatus}}
+        </div>
+        @if(loggedUser.role != 'Customer'){
+          <button class="status-action" (click) = "changeStatus(item.panCard , 'Approve')">Approve</button>
+          <button class="status-action" (click) = "changeStatus(item.panCard , 'Reject')">Reject</button>
+        }
+        
+      </div>
+    </div>
+    
+  }
+  </div>
+</div>
+

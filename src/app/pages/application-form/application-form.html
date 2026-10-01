@@ -1,0 +1,136 @@
+<main class="application-page">
+	<div class="container application-container">
+		<header class="application-heading">
+			<div>
+				<p class="application-eyebrow">NORTHLINE BANK <span> / &nbsp; LOAN SERVICES</span></p>
+				<h1>Loan application</h1>
+			</div>
+			<p class="application-reference"><span>APPLICATION</span><strong>Applicant details</strong></p>
+		</header>
+
+		<form class="application-form" aria-label="Loan application form" [formGroup] = "applicationForm">
+			<input type="hidden" formControlName="applicantID" />
+			<input type="hidden" formControlName="customerId" />
+			<section class="applicant-section" aria-labelledby="applicant-heading">
+				<div class="section-heading">
+					<div>
+						<span class="section-number">01</span>
+						<h2 id="applicant-heading">Applicant information</h2>
+					</div>
+					<span class="required-note"><span aria-hidden="true">*</span> Required fields</span>
+				</div>
+
+				<div class="applicant-grid">
+					<div class="form-field span-3">
+						<label for="fullName">Full name <span>*</span></label>
+						<input id="fullName" name="fullName" formControlName="fullName" type="text" placeholder="As shown on your ID" required />
+					</div>
+					<div class="form-field span-3">
+						<label for="panCard">PAN card <span>*</span></label>
+						<input id="panCard" name="panCard" formControlName="panCard" type="text" placeholder="Enter PAN number" required />
+					</div>
+					<div class="form-field span-3">
+						<label for="dateOfBirth">Date of birth <span>*</span></label>
+						<input id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" type="date" required />
+					</div>
+					<div class="form-field span-3">
+						<label for="applicationStatus">Application status</label>
+						<select id="applicationStatus" name="applicationStatus" formControlName="applicationStatus">
+							<option value="">Select status</option>
+							<option value="Draft">Draft</option>
+							<option value="Submitted">Submitted</option>
+						</select>
+					</div>
+
+					<div class="form-field span-3">
+						<label for="email">Email address <span>*</span></label>
+						<input id="email" name="email" formControlName="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+					</div>
+					<div class="form-field span-3">
+						<label for="phone">Phone number <span>*</span></label>
+						<input id="phone" name="phone" formControlName="phone" type="tel" placeholder="Enter phone number" autocomplete="tel" required />
+					</div>
+					<div class="form-field span-3">
+						<label for="annualIncome">Annual income <span>*</span></label>
+						<div class="input-prefix"><span aria-hidden="true">$</span><input id="annualIncome" name="annualIncome" formControlName="annualIncome" type="number" min="0" placeholder="0.00" required /></div>
+					</div>
+					<div class="form-field span-3">
+						<label for="employmentStatus">Employment status <span>*</span></label>
+						<select id="employmentStatus" name="employmentStatus" formControlName="employmentStatus" required>
+							<option value="" selected disabled>Select status</option>
+							<option>Employed</option>
+							<option>Self-employed</option>
+							<option>Other</option>
+						</select>
+					</div>
+
+					<div class="form-field span-6">
+						<label for="address">Street address <span>*</span></label>
+						<input id="address" name="address" formControlName="address" type="text" placeholder="Street address" autocomplete="street-address" required />
+					</div>
+					<div class="form-field span-2">
+						<label for="city">City <span>*</span></label>
+						<input id="city" name="city" formControlName="city" type="text" placeholder="City" autocomplete="address-level2" required />
+					</div>
+					<div class="form-field span-2">
+						<label for="state">State <span>*</span></label>
+						<input id="state" name="state" formControlName="state" type="text" placeholder="State" autocomplete="address-level1" required />
+					</div>
+					<div class="form-field span-2">
+						<label for="zipCode">ZIP code <span>*</span></label>
+						<input id="zipCode" name="zipCode" formControlName="zipCode" type="text" placeholder="ZIP code" autocomplete="postal-code" required />
+					</div>
+
+					<div class="form-field span-3">
+						<label for="creditScore">Credit score</label>
+						<input id="creditScore" name="creditScore" formControlName="creditScore" type="number" min="300" max="850" placeholder="If known" />
+					</div>
+					<div class="form-field span-6">
+						<label for="assets">Assets</label>
+						<input id="assets" name="assets" formControlName="assets" type="text" placeholder="Savings, property, investments" />
+					</div>
+					<div class="form-field span-3">
+						<label for="dateApplied">Date applied</label>
+						<input id="dateApplied" name="dateApplied" formControlName="dateApplied" type="date" />
+					</div>
+				</div>
+			</section>
+
+			<section class="loans-section" aria-labelledby="loans-heading" formArrayName = "Loans">
+				<div class="section-heading loan-heading">
+					<div>
+						<span class="section-number">02</span>
+						<h2 id="loans-heading">Existing loans</h2>
+					</div>
+					<p>Include any active loans you are currently repaying.</p>
+					<button class="add-loan-button" type="button" (click) = "addNewLoanForm()"><span aria-hidden="true">+</span> Add loan</button>
+				</div>
+
+				<div class="loan-entry-row" *ngFor = "let loan of loanDetails.controls; let srNo = index">
+					<ng-container [formGroupName] = "srNo">
+                        <div class="form-field">
+						   <label for="bankName">Bank name</label>
+						   <input formControlName = "bankName"id="bankName" name="bankName" type="text" placeholder="Lender or bank" />
+					    </div>
+					    <div class="form-field">
+					     	<label for="loanAmount">Loan amount</label>
+						<div class="input-prefix"><span aria-hidden="true">$</span><input formControlName = "loanAmount" id="loanAmount" name="loanAmount" type="number" min="0" placeholder="0.00" /></div>
+					     </div>
+					     <div class="form-field">
+						    <label for="emi">Monthly EMI</label>
+						<div class="input-prefix"><span aria-hidden="true">$</span><input id="emi" name="emi" type="number" min="0" placeholder="0.00" /></div>
+					     </div>
+					</ng-container>
+					
+					
+				</div>
+
+			</section>
+
+			<footer class="application-footer">
+				<p><span aria-hidden="true">&#9679;</span> Your information is encrypted and secure</p>
+				<button class="submit-application" type="button" (click) = "onSaveApplication()">Submit application <span aria-hidden="true">&#8594;</span></button>
+			</footer>
+		</form>
+	</div>
+</main>

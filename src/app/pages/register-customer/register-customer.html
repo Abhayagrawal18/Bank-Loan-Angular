@@ -1,0 +1,36 @@
+<main class="register-page">
+	<div class="container register-container">
+		<section class="register-panel" aria-labelledby="register-title">
+			<p class="register-eyebrow"><span></span> NORTHLINE BANK</p>
+			<h1 id="register-title">Make yourself <em>at home.</em></h1>
+			<p class="register-intro">Create your account to get started with your loan application.</p>
+
+			<form class="register-form">
+				<div class="mb-3">
+					<label for="fullName" class="form-label">Full name</label>
+					<input id="fullName" [(ngModel)] = "newUserObj.fullName"name="fullName" type="text" class="form-control" placeholder="Your full name" autocomplete="name" required />
+				</div>
+
+				<div class="mb-3">
+					<label for="userName" class="form-label">Username</label>
+					<input id="userName" [(ngModel)] = "newUserObj.userName"name="userName" type="text" class="form-control" placeholder="Choose a username" autocomplete="username" required />
+				</div>
+
+				<div class="mb-3">
+					<label for="emailId" class="form-label">Email address</label>
+					<input id="emailId" [(ngModel)] = "newUserObj.emailId"name="emailId" type="email" class="form-control" placeholder="you@example.com" autocomplete="email" required />
+				</div>
+
+				<div class="mb-4">
+					<label for="password" class="form-label">Password</label>
+					<input id="password" [(ngModel)] = "newUserObj.password"name="password" type="password" class="form-control" placeholder="Create a password" autocomplete="new-password" required />
+				</div>
+
+				<button type="button" (click) = "onSaveCustomer()" class="btn register-submit">Create your account <span aria-hidden="true">&#8594;</span></button>
+			</form>
+
+			<p class="login-prompt">Already registered? <a href="/login">Log in</a></p>
+			<p class="register-note">Your information is used to set up and manage your Northline Bank account.</p>
+		</section>
+	</div>
+</main>

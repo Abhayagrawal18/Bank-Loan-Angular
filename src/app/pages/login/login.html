@@ -1,0 +1,43 @@
+<main class="login-page">
+	<section class="login-layout" aria-label="Sign in to Northline Bank">
+		<div class="login-panel">
+			<div class="login-content">
+				<p class="login-eyebrow"><span aria-hidden="true"></span> YOUR FINANCIAL HOME</p>
+				<h1>Welcome <em>back.</em></h1>
+				<p class="login-intro">Sign in to continue to your Northline account.</p>
+
+				<form class="login-form" (submit) = "onLoginUser()">
+					<label for="userName">userName</label>
+					<input [(ngModel)]="loginObj.userName" id="userName"  name = "userName" type="text" placeholder="Enter the user name" autocomplete="username" required />
+
+					<div class="password-heading">
+						<label for="password">Password</label>
+						<button class="text-button" type="button">Forgot password?</button>
+					</div>
+					<input id="password" [(ngModel)] = "loginObj.password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required />
+
+					<label class="remember-option" for="remember">
+						<input id="remember" name="remember" type="checkbox" />
+						<span>Remember me</span>
+					</label>
+
+					<button class="sign-in-button" type="submit">Sign in <span aria-hidden="true">&#8594;</span></button>
+				</form>
+
+				<p class="register-prompt">New to Northline? <a href="/register-customer">Create an account</a></p>
+				<p class="security-note"><span aria-hidden="true">&#9679;</span> Your information is encrypted and secure</p>
+			</div>
+		</div>
+
+		<aside class="login-visual" aria-label="A Northline advisor helping a customer">
+			<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="A financial advisor talking with a customer" />
+			<div class="visual-shade" aria-hidden="true"></div>
+			<div class="visual-copy">
+				<p>HERE FOR WHAT'S NEXT</p>
+				<blockquote>“A little clarity can make all the difference.”</blockquote>
+				<span>People-first banking, every step of the way.</span>
+			</div>
+			<span class="visual-index" aria-hidden="true">NORTHLINE BANK&nbsp; / &nbsp;01</span>
+		</aside>
+	</section>
+</main>

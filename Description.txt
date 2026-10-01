@@ -1,0 +1,280 @@
+BANK LOAN APPLICATION - INTERVIEW REVISION GUIDE
+
+PROJECT OVERVIEW
+
+This is the frontend for a bank-loan application system. Customers can
+register, sign in, and submit or view applications, while bank employees can
+review assigned applications. The app gets and sends its data through a
+separate BankLoan API; the backend code is not in this project.
+
+
+ANGULAR AND PROJECT STRUCTURE
+
+Q1. What kind of project is this?
+Answer: This is a single-page web application built with Angular and
+	TypeScript. It handles the screens and user interactions, then talks
+	to a separate backend API for login, registration, and loan data.
+
+Q2. Which main technologies are used?
+Answer: The main technologies are Angular 21 and TypeScript, with HTML and
+	CSS for the interface. The app also uses Angular Router, Angular
+	Forms, RxJS, and HttpClient; Bootstrap is included as a dependency
+	for styling.
+
+Q3. What is an Angular component?
+Answer: A component is a self-contained part of the page, such as the login
+	screen or application list. Its TypeScript class handles data and
+	behavior, while its HTML template and CSS define what the user sees.
+
+Q4. What is a standalone component?
+Answer: A standalone component can be used without declaring it inside an
+	NgModule. It lists the features its template needs in its own
+	`imports` array, as the login and loan form components do in this
+	project.
+
+Q5. What is the purpose of a service?
+Answer: A service keeps shared work out of page components. Here, the Master
+	service handles the API requests, so pages can ask it for data
+	without each page constructing the request URL itself.
+
+Q6. What is dependency injection?
+Answer: Dependency injection is how Angular supplies a class with the
+	objects it depends on. For example, Login gets the Master service
+	and Router through `inject()` instead of creating those objects
+	itself.
+
+Q7. What is Angular routing?
+Answer: Routing connects a URL to the page component Angular should display.
+	For example, going to `/login` shows the Login component, and
+	Angular can switch pages without reloading the whole site.
+
+Q8. What is the difference between frontend and backend in this project?
+Answer: The frontend is the part users interact with: it displays pages,
+		collects form data, and sends requests. A separate backend API
+		handles the data and server-side operations; its base URL is
+		configured in the Master service.
+
+
+FORMS AND DATA BINDING
+
+Q9. What is FormsModule?
+Answer: FormsModule gives Angular the features needed for template-driven
+	forms, including `ngModel`. This project imports it on the login and
+	registration pages so their inputs can connect to data in the
+	component.
+
+Q10. What does `[(ngModel)]` mean?
+Answer: `[(ngModel)]` keeps an input and a component property in sync in
+	both directions. When the user types a username, for example, the
+	value is updated in `loginObj.userName` and is ready to send to the
+	API.
+
+Q11. Why does an input using `ngModel` need a `name` attribute?
+Answer: Angular uses the `name` to identify and register an input inside a
+	template-driven form. That is why the login and registration fields
+	have names such as `userName` and `password`.
+
+Q12. What is a reactive form?
+Answer: A reactive form is built and managed in TypeScript rather than being
+	described mostly in the HTML. The template connects to that form
+	model, which makes the form's values and behavior easier to control
+	in code.
+
+Q13. Why is a reactive form used for adding loan details?
+Answer: One application can contain one loan entry or several, so the form
+	needs a list that can grow. A reactive form with a FormArray makes
+	it easier to add loan groups and collect them together when
+	submitting the application.
+
+Q14. What are FormGroup, FormControl, and FormArray?
+Answer: Think of a FormControl as one field, a FormGroup as a set of
+	related fields, and a FormArray as a list that can change size. In
+	this app, the application is a FormGroup and `Loans` is a FormArray
+	containing a FormGroup for each loan.
+
+Q15. How does this project add a loan entry to the form?
+Answer: `addNewLoan()` creates the controls for one loan.
+	`addNewLoanForm()` puts that group into the `Loans` FormArray, so
+	calling it again adds another loan to the form.
+
+Q16. What are helper functions, and which ones are in this project?
+Answer: A helper function is a small piece of code that handles one task,
+		keeping the main logic easier to follow. In this project,
+		`initializeForm()` builds the form, while `addNewLoan()` and
+		`addNewLoanForm()` create and add a loan entry.
+
+Q17. What is form validation?
+Answer: Validation checks that the user has entered acceptable data before
+	the app submits it, such as requiring a name or a correctly
+	formatted email. This project uses some HTML `required` attributes;
+	Angular validators could add more checks directly to the reactive
+	form.
+
+Q18. How are template-driven and reactive forms different?
+Answer: With a template-driven form, much of the setup lives in the HTML;
+	it is a good fit for simpler forms like this app's login and
+	registration. With a reactive form, the structure lives in
+	TypeScript, which is useful for the loan form because its list of
+	loans can change.
+
+
+API CALLS AND RXJS
+
+Q19. What is an API call?
+Answer: An API call is how the frontend asks the backend to do something
+	or return data. This app makes calls to log in, register a customer,
+	save an application, fetch applications, and check an application's
+	status.
+
+Q20. What is HttpClient?
+Answer: HttpClient is Angular's built-in way to send HTTP requests, such as
+	GET and POST. The Master service uses it to contact the BankLoan
+	API and gives the response back to the page that needs it.
+
+Q21. What is an Observable?
+Answer: An Observable represents data that may arrive later, rather than
+	being available immediately. An API response is a common example:
+	the component subscribes and handles it when the server replies.
+
+Q22. What does `subscribe()` do?
+Answer: `subscribe()` lets the app receive and respond to values from an
+	Observable, such as an API response. This project uses a `next`
+	callback for successful responses; an `error` callback can show a
+	useful message if the request fails.
+
+Q23. What is a Subject, and what does `loginSubject$` do?
+Answer: A Subject lets one part of the app send an event and other parts
+	listen for it. After login, this app calls `loginSubject$.next()`;
+	the Navbar listens for that event and reloads the saved user details
+	without needing a page refresh.
+
+Q24. Why does the property name end in `$`?
+Answer: Developers often add `$` to names that hold an Observable or
+	stream, so readers can recognize them quickly. It is only a naming
+	convention; TypeScript does not give the dollar sign any special
+	meaning here.
+
+Q25. What is an HTTP interceptor?
+Answer: An HTTP interceptor is a central place to inspect or change
+	requests going to the server and responses coming back. It is often
+	used for shared tasks like adding an auth token or handling common
+	errors; this project does not currently have one.
+
+Q26. How would an interceptor help this project?
+Answer: If this API uses an authentication token, an interceptor could add
+	it to every request in one place instead of repeating that code in
+	each method. It could also handle common errors consistently, but
+	the backend still has to issue and verify the token.
+
+Q27. What is the difference between GET and POST?
+Answer: GET is usually used to read information, while POST usually sends
+	information to the server, for example to create or submit
+	something. This app uses GET to retrieve applications and POST for
+	login, registration, and application submission.
+
+
+LOGIN, STORAGE, AND ACCESS CONTROL
+
+Q28. What happens during login in this project?
+Answer: The form keeps the username and password in `loginObj`, then sends
+	them to the API through the Master service. On success, the app
+	saves the returned user information, notifies the Navbar, and
+	navigates to the home page.
+
+Q29. What is localStorage?
+Answer: localStorage is a small storage area in the browser that keeps
+	values even after a refresh or restart. This app saves the logged-in
+	user under `bankloanuser` and reads it later to get information such
+	as the user's ID and role.
+
+Q30. Why does this app use localStorage?
+Answer: The app uses it so it can recover the saved user information after
+	a page refresh. Since localStorage stores strings, the app converts
+	the user object to JSON when saving it and parses the JSON when
+	reading it back.
+
+Q31. Is localStorage secure for passwords or sensitive tokens?
+Answer: No. Code running in the browser can read localStorage, so it is not
+	a safe place to keep a password and can be exposed if the site has a
+	scripting vulnerability. A production app should never store
+	passwords there and should use an authentication approach designed
+	with the backend.
+
+Q32. What is role-based access control?
+Answer: Role-based access control means a user's role determines what they
+	are allowed to see or do. In this app, roles such as Customer and
+	Bank Employee affect which applications are loaded and which UI
+	details are shown.
+
+Q33. Is hiding a button or page for a role enough to secure the application?
+Answer: No. Hiding a button only changes what the normal user sees; someone
+	can still try to call the API directly. The backend must check the
+	user's identity and permissions before allowing protected actions.
+
+
+TYPESCRIPT AND TEMPLATE CONCEPTS
+
+Q34. What is an interface?
+Answer: An interface describes what properties an object is expected to
+	have, which helps TypeScript catch mismatches while you are coding.
+	This project uses interfaces such as UserModel and ILoanApplication
+	to describe user and loan data.
+
+Q35. What is a signal?
+Answer: A signal is a value that Angular can track, so the view updates
+	when that value changes. ApplicationList keeps its applications in
+	a signal, updates it with `.set()`, and reads it in the template by
+	calling `applicationList()`.
+
+Q36. What are `@if` and `@for`?
+Answer: These are Angular's built-in ways to control what appears in a
+	template. `@if` shows content only when a condition is true, and
+	`@for` repeats a block for each application in the list.
+
+Q37. What are Angular pipes?
+Answer: A pipe formats or transforms a value just for display; it does not
+	change the original value in the component. This app uses DatePipe
+	for dates and SlicePipe to show part of a name.
+
+Q38. What does navigation after form submission do?
+Answer: Once the API confirms the application was saved, Angular Router
+	takes the user to the application list. The page changes inside the
+	app without doing a full browser reload.
+
+
+PROJECT-SPECIFIC FOLLOW-UP QUESTIONS
+
+Q39. Where are API endpoints defined?
+Answer: The endpoint calls are collected in methods on the Master service,
+		alongside the shared API base URL. This keeps URL and request logic
+		in one place instead of repeating it across page components.
+
+Q40. What should be improved before this is production-ready?
+Answer: I would strengthen validation and error handling, use more specific
+	types instead of `any`, and add clear loading states. I would also
+	verify secure authentication and make sure the backend checks
+	permissions, rather than relying only on role-based UI changes.
+
+Q41. What should be configured so Angular can inject HttpClient?
+Answer: Angular needs its HTTP providers registered, usually by adding
+	`provideHttpClient()` to the application configuration. I don't see
+	that provider in this project's current `app.config.ts`, so it
+	should be checked if API calls fail with a missing-provider error.
+
+
+QUICK PROJECT EXPLANATION FOR AN INTERVIEW
+
+This is an Angular single-page frontend for a bank-loan workflow. It uses
+standalone components, Angular routing, template-driven forms for login and
+registration, and reactive forms with a FormArray for loan details. A shared
+service uses HttpClient and RxJS Observables to communicate with a hosted API.
+The app stores user data in localStorage and uses roles to tailor the
+interface, while secure authorization must still be enforced by the backend.
+
+
+PROMPT FOR FURTHER REVISION
+
+Use this guide to quiz me one question at a time. Wait for my answer, then
+correct it, explain the concept in simple language, and give a
+project-specific example. Do not claim that a feature is implemented unless
+this guide says it is.

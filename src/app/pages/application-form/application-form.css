@@ -1,0 +1,424 @@
+.application-page {
+	min-height: calc(100svh - 76px);
+	padding: 16px 0 18px;
+	background: #f4f7f3;
+	color: #23342f;
+}
+
+.application-container {
+	max-width: 1240px;
+}
+
+.application-heading,
+.section-heading,
+.section-heading > div,
+.application-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.application-heading {
+	min-height: 54px;
+	margin-bottom: 12px;
+}
+
+.application-eyebrow {
+	margin: 0 0 3px;
+	color: #397263;
+	font-size: 10px;
+	font-weight: 750;
+	letter-spacing: 1px;
+}
+
+.application-eyebrow span {
+	color: #98a49e;
+	font-weight: 500;
+}
+
+.application-heading h1 {
+	margin: 0;
+	color: #173b32;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.application-reference {
+	display: grid;
+	gap: 3px;
+	margin: 0;
+	text-align: right;
+}
+
+.application-reference span {
+	color: #87938d;
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.application-reference strong {
+	color: #355f53;
+	font-size: 12px;
+	font-weight: 650;
+}
+
+.application-form {
+	padding: 15px 18px 13px;
+	border: 1px solid #e1e8e2;
+	border-top: 3px solid #a9c777;
+	background: #fff;
+	box-shadow: 0 8px 24px rgb(29 58 47 / 5%);
+}
+
+.applicant-section {
+	padding-bottom: 13px;
+	border-bottom: 1px solid #e8ede8;
+}
+
+.section-heading {
+	min-height: 25px;
+	margin-bottom: 10px;
+}
+
+.section-heading > div {
+	justify-content: flex-start;
+	gap: 9px;
+}
+
+.section-number {
+	color: #6a8d5d;
+	font-size: 10px;
+	font-weight: 750;
+	letter-spacing: .5px;
+}
+
+.section-heading h2 {
+	margin: 0;
+	color: #203b32;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.required-note {
+	color: #78847e;
+	font-size: 10px;
+}
+
+.required-note span,
+.form-field label span {
+	color: #bc5d45;
+}
+
+.applicant-grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 12px;
+	row-gap: 8px;
+}
+
+.form-field {
+	min-width: 0;
+}
+
+.form-field label {
+	display: block;
+	margin: 0 0 4px;
+	color: #43534c;
+	font-size: 10px;
+	font-weight: 650;
+	line-height: 1.2;
+}
+
+.form-field input,
+.form-field select {
+	width: 100%;
+	height: 34px;
+	min-width: 0;
+	padding: 6px 9px;
+	border: 1px solid #d9e1db;
+	border-radius: 4px;
+	outline: none;
+	background: #fff;
+	color: #263c33;
+	font-family: inherit;
+	font-size: 12px;
+}
+
+.form-field input::placeholder {
+	color: #a2aca6;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+	border-color: #6d9a78;
+	box-shadow: 0 0 0 2px rgb(109 154 120 / 13%);
+}
+
+.form-field select:invalid,
+.form-field select option[value=""] {
+	color: #a2aca6;
+}
+
+.span-2 {
+	grid-column: span 2;
+}
+
+.span-3 {
+	grid-column: span 3;
+}
+
+.span-6 {
+	grid-column: span 6;
+}
+
+.span-9 {
+	grid-column: span 9;
+}
+
+.input-prefix {
+	display: flex;
+	align-items: center;
+	height: 34px;
+	border: 1px solid #d9e1db;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.input-prefix:focus-within {
+	border-color: #6d9a78;
+	box-shadow: 0 0 0 2px rgb(109 154 120 / 13%);
+}
+
+.input-prefix > span {
+	padding-left: 9px;
+	color: #7a8981;
+	font-size: 12px;
+}
+
+.input-prefix input {
+	height: 32px;
+	border: 0;
+	box-shadow: none;
+}
+
+.loans-section {
+	padding-top: 12px;
+}
+
+.loan-heading {
+	margin-bottom: 8px;
+}
+
+.loan-heading p {
+	margin: 0;
+	color: #7b8780;
+	font-size: 10px;
+}
+
+.loan-entry-row {
+	display: grid;
+	grid-template-columns: minmax(180px, 1.35fr) minmax(135px, 1fr) minmax(135px, 1fr) auto;
+	align-items: end;
+	gap: 10px;
+}
+
+.add-loan-button,
+.submit-application {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	min-height: 34px;
+	padding: 0 13px;
+	border: 1px solid #255c4c;
+	border-radius: 4px;
+	background: #fff;
+	color: #255c4c;
+	font-family: inherit;
+	font-size: 11px;
+	font-weight: 700;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.add-loan-button > span {
+	font-size: 17px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.add-loan-button:hover {
+	background: #f2f7ef;
+}
+
+.loans-table-wrap {
+	margin-top: 10px;
+	overflow-x: auto;
+}
+
+.loans-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 11px;
+}
+
+.loans-table th {
+	padding: 7px 10px;
+	border-top: 1px solid #e4ebe4;
+	border-bottom: 1px solid #e4ebe4;
+	background: #f6f8f5;
+	color: #66756d;
+	font-size: 9px;
+	font-weight: 700;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.loans-table .amount-column {
+	width: 155px;
+	text-align: right;
+}
+
+.loans-table td {
+	padding: 8px 10px;
+	border-bottom: 1px solid #edf0ed;
+	color: #34463d;
+}
+
+.loans-table .empty-loans {
+	color: #89958e;
+	text-align: center;
+}
+
+.application-footer {
+	min-height: 47px;
+	margin-top: 9px;
+	padding-top: 9px;
+	border-top: 1px solid #e8ede8;
+}
+
+.application-footer p {
+	margin: 0;
+	color: #77857d;
+	font-size: 10px;
+}
+
+.application-footer p span {
+	margin-right: 5px;
+	color: #7c9b57;
+	font-size: 8px;
+}
+
+.submit-application {
+	min-height: 36px;
+	padding: 0 16px;
+	border-color: #173b32;
+	background: #173b32;
+	color: #fff;
+	font-size: 12px;
+}
+
+.submit-application:hover {
+	background: #265447;
+}
+
+.submit-application span {
+	color: #dbe9a9;
+	font-size: 15px;
+}
+
+@media (max-width: 991.98px) {
+	.application-page {
+		padding-top: 14px;
+	}
+
+	.applicant-grid {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.span-2 {
+		grid-column: span 2;
+	}
+
+	.span-3 {
+		grid-column: span 3;
+	}
+
+	.span-6,
+	.span-9 {
+		grid-column: span 6;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.application-page {
+		min-height: calc(100svh - 68px);
+		padding: 12px 0 20px;
+	}
+
+	.application-heading {
+		margin-bottom: 9px;
+	}
+
+	.application-heading h1 {
+		font-size: 21px;
+	}
+
+	.application-reference strong {
+		font-size: 11px;
+	}
+
+	.application-form {
+		padding: 13px 12px 12px;
+	}
+
+	.applicant-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 9px;
+		row-gap: 9px;
+	}
+
+	.span-2,
+	.span-3 {
+		grid-column: span 1;
+	}
+
+	.span-6,
+	.span-9 {
+		grid-column: span 2;
+	}
+
+	.loan-heading {
+		align-items: flex-start;
+		gap: 6px;
+	}
+
+	.loan-heading p {
+		max-width: 145px;
+		text-align: right;
+	}
+
+	.loan-entry-row {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.loan-entry-row .form-field:first-child {
+		grid-column: span 2;
+	}
+
+	.add-loan-button {
+		min-height: 34px;
+	}
+
+	.application-footer {
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.application-footer p {
+		max-width: 150px;
+		padding-top: 5px;
+	}
+}
